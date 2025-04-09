@@ -1,44 +1,44 @@
-public class KthSmallestElement {
+public class ElementoKMasPequeno {
 
-    public static int findKthSmallest(int[] arr, int k) {
+    public static int encontrarKthMasPequeño(int[] arr, int k) {
         if (k < 1 || k > arr.length) {
             throw new IllegalArgumentException("k debe estar entre 1 y el tamaño del arreglo");
         }
-        return quickSelect(arr, 0, arr.length - 1, k - 1);
+        return seleccionarRapido(arr, 0, arr.length - 1, k - 1);
     }
 
-    private static int quickSelect(int[] arr, int left, int right, int k) {
-        if (left == right) {
-            return arr[left];
+    private static int seleccionarRapido(int[] arr, int izquierda, int derecha, int k) {
+        if (izquierda == derecha) {
+            return arr[izquierda];
         }
 
-        int pivotIndex = partition(arr, left, right);
+        int indicePivote = particionar(arr, izquierda, derecha);
 
-        if (k == pivotIndex) {
+        if (k == indicePivote) {
             return arr[k];
-        } else if (k < pivotIndex) {
-            return quickSelect(arr, left, pivotIndex - 1, k);
+        } else if (k < indicePivote) {
+            return seleccionarRapido(arr, izquierda, indicePivote - 1, k);
         } else {
-            return quickSelect(arr, pivotIndex + 1, right, k);
+            return seleccionarRapido(arr, indicePivote + 1, derecha, k);
         }
     }
 
-    private static int partition(int[] arr, int left, int right) {
-        int pivot = arr[right];
-        int i = left;
+    private static int particionar(int[] arr, int izquierda, int derecha) {
+        int pivote = arr[derecha];
+        int i = izquierda;
 
-        for (int j = left; j < right; j++) {
-            if (arr[j] <= pivot) {
-                swap(arr, i, j);
+        for (int j = izquierda; j < derecha; j++) {
+            if (arr[j] <= pivote) {
+                intercambiar(arr, i, j);
                 i++;
             }
         }
 
-        swap(arr, i, right);
+        intercambiar(arr, i, derecha);
         return i;
     }
 
-    private static void swap(int[] arr, int i, int j) {
+    private static void intercambiar(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
@@ -46,9 +46,9 @@ public class KthSmallestElement {
 
     public static void main(String[] args) {
         // Ejemplos del enunciado
-        System.out.println(findKthSmallest(new int[]{4, 2, 7, 10, 4, 17}, 3)); // 4
-        System.out.println(findKthSmallest(new int[]{4, 2, 7, 10, 4, 1, 6}, 5)); // 6
-        System.out.println(findKthSmallest(new int[]{4, 2, 7, 1, 4, 6}, 1)); // 1
-        System.out.println(findKthSmallest(new int[]{9, 2, 7, 1, 7}, 4)); // 7
+        System.out.println(encontrarKthMasPequeño(new int[]{4, 2, 7, 10, 4, 17}, 3)); // 4
+        System.out.println(encontrarKthMasPequeño(new int[]{4, 2, 7, 10, 4, 1, 6}, 5)); // 6
+        System.out.println(encontrarKthMasPequeño(new int[]{4, 2, 7, 1, 4, 6}, 1)); // 1
+        System.out.println(encontrarKthMasPequeño(new int[]{9, 2, 7, 1, 7}, 4)); // 7
     }
 }
