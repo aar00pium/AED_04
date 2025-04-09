@@ -6,26 +6,27 @@ public class SubPotencias {
         return false;
     }
     public static int arrRestringido(int n, int[] arr, int elem) {
-        if (elem == (n - 1)) {
-            if (esPotenciaDos(arr[elem]) || arr[elem] % 5 == 0) {
-                return arr[elem];
-            }
+        if (elem == n) {
             return 0;
         } else {
-            if (esPotenciaDos(arr[elem]) || (arr[elem] % 5 == 0 && arr[elem + 1] % 2 == 0)) {
+            if (esPotenciaDos(arr[elem]) || esMultiploCinco(arr, arr[elem], elem)) {
                 return arr[elem] + arrRestringido(n, arr, elem + 1);
             }
-        }
-        return arrRestringido(n, arr, elem + 1);
+            return arrRestringido(n, arr, elem + 1);
+        }       
     }
     public static boolean esPotenciaDos(int num) {
-        if (num < 1) {
-            return false;
-        }
-        while (num % 2 == 0) {
-            num /= 2;
-        }
+        if (num < 1) { return false; }
+        while (num % 2 == 0) { num /= 2; }
         return num == 1;
+    }
+
+    public static boolean esMultiploCinco(int[] arr, int num, int elem) {
+        if (num % 5 == 0) {
+            if (elem == arr.length) { return true; }
+            if (arr[elem + 1] % 2 != 0) { return true; }
+        }
+        return false;
     }
     public static void main(String[] args) {
         int[] arr1 = new int[]{4, 8, 10, 3, 5};
