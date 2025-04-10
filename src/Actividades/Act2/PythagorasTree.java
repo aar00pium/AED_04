@@ -1,4 +1,4 @@
-package Actividades;
+package Actividades.Act2;
 
 import javax.swing.*; // Importa las clases para interfaces gráficas
 import java.awt.*; // Importa clases para gráficos y colores
