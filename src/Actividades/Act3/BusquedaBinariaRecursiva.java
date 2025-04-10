@@ -1,3 +1,5 @@
+package Actividades.Act3;
+
 public class BusquedaBinariaRecursiva {
 
     public static int buscar(int[] arreglo, int objetivo) {
