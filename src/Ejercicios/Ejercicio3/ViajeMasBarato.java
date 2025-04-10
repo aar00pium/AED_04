@@ -1,3 +1,5 @@
+package Ejercicios.Ejercicio3;
+
 public class ViajeMasBarato {
 
     /**
